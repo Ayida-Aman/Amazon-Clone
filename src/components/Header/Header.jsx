@@ -4,6 +4,7 @@ import { BiCart } from "react-icons/bi";
 import { SlLocationPin } from "react-icons/sl";
 import { Link } from "react-router-dom";
 import css from "./Header.module.css";
+import LowerHeader from "./LowerHeader";
 
 
 const Header = () => {
@@ -65,6 +66,7 @@ const Header = () => {
           </div>
         </div>
       </section>
+      <LowerHeader/>
     </section>
   );
 };
