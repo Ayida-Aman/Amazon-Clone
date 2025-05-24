@@ -50,15 +50,15 @@ const Header = () => {
                                 <option value="">EN</option>
                             </select>
                         </Link>
-                        <Link to="/" >
+                        <Link to="/auth" >
                             <p>Sign In</p>
                             <p>Accounts and Lists</p>
                         </Link>
-                        <Link to="/" >
+                        <Link to="/orders" >
                             <p>Returns</p>
                             <p>and Orders</p>
                         </Link>
-                        <Link to="/" className={css.cart}>
+                        <Link to="/cart" className={css.cart}>
                             <BiCart size={38}/>
                             <span>0</span>
                         </Link>
