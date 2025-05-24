@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { BsSearch } from "react-icons/bs";
 import { BiCart } from "react-icons/bi";
 import { SlLocationPin } from "react-icons/sl";
