@@ -10,6 +10,7 @@ import Cart from './pages/Cart/Cart';
 import Payment from './pages/Payment/Payment';
 import Orders from './pages/Orders/Orders';
 import Results from './pages/Results/Results';
+import ProductDetail from './pages/ProductDetail/ProductDetail'
 function Routing() {
   return (
     <Router>
@@ -18,6 +19,7 @@ function Routing() {
             <Route path='/auth' element={<SignUp/>} />
             <Route path='/cart' element={<Cart/>} />
             <Route path="/category/:categoryName" element={<Results/>} /> {/* :categoryName is a variable that holds where the user navigates */}
+            <Route path='/products/:productId' element={<ProductDetail/>} />
             <Route path='/payment' element={<Payment/>} />
             <Route path='/orders' element={<Orders/>} />
         </Routes>
