@@ -18,7 +18,7 @@ function Products() {
         {
             products?.map((singleProduct) => {
                 return (
-                    <ProductCard cardInfo= {singleProduct} key={singleProduct.id} />
+                    <ProductCard product= {singleProduct} key={singleProduct.id} />
                 )
             })
         }
