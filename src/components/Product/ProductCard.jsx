@@ -3,17 +3,16 @@ import { Rating } from "@mui/material";
 import CurrencyFormat from '../CurrencyFormat/CurrencyFormat';
 import style from "./Products.module.css"
 import { Link } from 'react-router-dom';
-function ProductCard({product}) {
-      let { image, title, id, rating, price } = product;
-      
-
-  return (
-    <div className={style.card__container} >
+function ProductCard({product, flex, renderDesc}) {
+    let { image, title, id, rating, price, description } = product;
+    return (
+    <div className={`${style.card__container} ${flex ? style.product__flexed : ""}`} >
         <Link to={`/products/${id}`}>
                 <img src={image} alt="" />
-              </Link>
+        </Link>
         <div>
             <h3>{title}</h3>
+            {renderDesc && <div className={style.renderDesc} >{description}</div>}
             <div>
                 {/* rating */}
                 <Rating  className={style.rating} value= {rating.rate} precision = {0.1} />
