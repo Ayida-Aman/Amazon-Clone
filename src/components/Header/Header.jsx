@@ -4,9 +4,12 @@ import { SlLocationPin } from "react-icons/sl";
 import { Link } from "react-router-dom";
 import css from "./Header.module.css";
 import LowerHeader from "./LowerHeader";
+import { useContext } from "react";
+import { DataContext } from "../DataProvider/DataProvider";
 
 
 const Header = () => {
+  const [{basket}, dispatch] = useContext(DataContext)
 
   return (
     <section className={css.fixed}>
@@ -60,7 +63,7 @@ const Header = () => {
                         </Link>
                         <Link to="/cart" className={css.cart}>
                             <BiCart size={38}/>
-                            <span>0</span>
+                            <span>{basket.length}</span>
                         </Link>
           </div>
         </div>
