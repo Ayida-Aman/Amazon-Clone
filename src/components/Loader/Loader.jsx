@@ -9,7 +9,7 @@ function Loader() {
         justifyContent: "center",
         height: "50vh",
       }}
-    ><PacmanLoader color="#36d7b7" /></div>
+    ><PacmanLoader color= "#febd69" /></div>
   )
 }
 
