@@ -9,6 +9,7 @@ import { DataContext } from "../DataProvider/DataProvider";
 
 
 const Header = () => {
+  // eslint-disable-next-line no-unused-vars
   const [{basket}, dispatch] = useContext(DataContext)
     const totalItem = basket?.reduce((amount, item) => {
     return item.amount + amount;
