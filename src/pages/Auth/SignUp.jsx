@@ -25,7 +25,7 @@ function SignUp() {
           user: userInfo.user,
         })
       }).catch((err)=>{
-        console.log(err);
+        setError(err.message)
         
       })
     }else{
@@ -36,7 +36,7 @@ function SignUp() {
           user: userInfo.user
         })
       }).catch((err)=>{
-        console.log(err);
+        setError(err.message)
       })
     }
   }
@@ -69,6 +69,9 @@ function SignUp() {
           Notice.
         </p>
         <button type='submit' onClick={authHandler} name='signup' className={classes.login__register}>Create your Amazon acoount</button>
+        {error && (
+          <small style={{ paddingTop: "5px", color: "red" }}>{error}</small>
+        )}
       </div>
     </section>
   )
