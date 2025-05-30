@@ -2,15 +2,22 @@
 import React, { useContext, useState } from 'react'
 import classes from "./SignUp.module.css"
 import Layout from '../../components/Layout/Layout'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {auth} from "../../utility/firebase"
 import {signInWithEmailAndPassword, createUserWithEmailAndPassword} from "firebase/auth"
 import { DataContext } from '../../components/DataProvider/DataProvider'
 import { Type } from '../../utility/action.type'
+import {ClipLoader} from "react-spinners"
+
 function SignUp() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
+  const [loading, setLoading] = useState({
+    signIn: false,
+    signUp: false,
+  })
+  const navigate = useNavigate()
   // console.log(email, password);
   const [{user}, dispatch] =useContext(DataContext)
   console.log(user);
@@ -18,25 +25,32 @@ function SignUp() {
   const authHandler = async (e)=> {
     e.preventDefault();
     if(e.target.name === "signin"){
+      setLoading({...loading, signIn: true})
       signInWithEmailAndPassword(auth, email, password).then((userInfo)=>{
         console.log(userInfo);
         dispatch({
           type: Type.SET_USER,
           user: userInfo.user,
         })
+        navigate('/')
+        setLoading({...loading, signIn:false})
       }).catch((err)=>{
         setError(err.message)
-        
+        setLoading({...loading, signIn:false})
       })
     }else{
+      setLoading({...loading, signUp:true})
       createUserWithEmailAndPassword(auth, email, password).then((userInfo)=>{
         console.log(userInfo);
         dispatch({
           type: Type.SET_USER,
           user: userInfo.user
         })
+        navigate('/')
+        setLoading({...loading, signUp:false})
       }).catch((err)=>{
         setError(err.message)
+        setLoading({...loading, signUp:false})
       })
     }
   }
@@ -61,14 +75,20 @@ function SignUp() {
           <input type="password" id='password' value={password} onChange={(e)=>setPassword(e.target.value)} />
         </div>
         <button type='submit' onClick={authHandler} name='signin' className={classes.login__btn}>
-          Sign In
+          {
+            loading.signIn? (<ClipLoader color='#000' size={15} />):("Sign In")
+          }
         </button>
       </form>
       <p>
           By continuing, you agree to Amazon fake clone condition of use and sale. please see our conditions of Use and Privacy
           Notice.
         </p>
-        <button type='submit' onClick={authHandler} name='signup' className={classes.login__register}>Create your Amazon acoount</button>
+        <button type='submit' onClick={authHandler} name='signup' className={classes.login__register}>
+          {
+            loading.signUp? (<ClipLoader color='#000' size={15} />):("Create Your Amazon Acoount")
+          }
+          </button>
         {error && (
           <small style={{ paddingTop: "5px", color: "red" }}>{error}</small>
         )}

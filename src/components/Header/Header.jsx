@@ -6,11 +6,11 @@ import css from "./Header.module.css";
 import LowerHeader from "./LowerHeader";
 import { useContext } from "react";
 import { DataContext } from "../DataProvider/DataProvider";
-
+import {auth} from "../../utility/firebase"
 
 const Header = () => {
   // eslint-disable-next-line no-unused-vars
-  const [{basket}, dispatch] = useContext(DataContext)
+  const [{user, basket}, dispatch] = useContext(DataContext)
     const totalItem = basket?.reduce((amount, item) => {
     return item.amount + amount;
   }, 0);
@@ -57,9 +57,24 @@ const Header = () => {
                                 <option value="">EN</option>
                             </select>
                         </Link>
-                        <Link to="/auth" >
-                            <p>Sign In</p>
-                            <p>Accounts and Lists</p>
+                        <Link to={!user && "/auth"} >
+                        <div>
+                          {
+                            user ? (
+                              <>
+                              <p>Hello {user?.email.split("@")[0]}</p>
+                              <span onClick={()=>auth.signOut()} >SignOut</span>
+                              </>
+                            ):(
+                              <>
+                              <p>Sign In</p>
+                              <p>Accounts and Lists</p>
+                              
+                              </>
+                            )
+                          }
+
+                        </div>
                         </Link>
                         <Link to="/orders" >
                             <p>Returns</p>
