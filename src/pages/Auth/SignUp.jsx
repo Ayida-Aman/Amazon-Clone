@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useContext, useState } from 'react'
 import classes from "./SignUp.module.css"
 import Layout from '../../components/Layout/Layout'
