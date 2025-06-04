@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useContext, useEffect, useState } from "react";
-import Layout from "../../Components/Layout/Layout";
+import Layout from "../../components/Layout/Layout";
 import { db } from "../../utility/firebase";
 import { DataContext } from "../../components/DataProvider/DataProvider"; 
 import css from "./Orders.module.css";
