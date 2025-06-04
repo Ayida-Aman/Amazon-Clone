@@ -4,6 +4,8 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 dotenv.config();
+
+// setGlobalOptions(maxInstances: 10);
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 const app = express();
 app.use(cors({ origin: true }));
